@@ -1,39 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Black Tile with White Border</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="./src/output.css">
+    <script src="./src/script.js" defer></script> <!-- Ensure JS loads after HTML -->
 </head>
-<body>
+<body class="bg-black text-white flex items-center justify-center h-screen">
 
-<div class="tilt-card" data-tilt>
-  <h1 class="title">Portfolio</h1>
-  <div class="menu">
-    <ul>
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
-      <li><a href="#projects" class="nav-link">Projects</a></li>
-    </ul>
+  <!-- Tilt Card Container -->
+  <div class="tilt-card-container bg-black border-2 border-white p-6 w-3/4 h-1/2 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-3 gap-6" data-tilt-full-page-listening>
+    
+      <!-- Left Side: Title and Menu -->
+      <div class="left-side md:col-span-1 flex flex-col items-start justify-start">
+          <header class="mb-5">
+              <h1 class="title text-4xl">Portfolio</h1>
+          </header>
+          
+          <!-- Navigation Menu -->
+          <nav class="menu">
+              <ul class="flex flex-col space-y-4">
+                  <li><a href="#" class="nav-link text-lg hover:text-yellow-500 transition-colors duration-300" data-target="about">About</a></li>
+                  <li><a href="#" class="nav-link text-lg hover:text-yellow-500 transition-colors duration-300" data-target="contact">Contact</a></li>
+                  <li><a href="#" class="nav-link text-lg hover:text-yellow-500 transition-colors duration-300" data-target="projects">Projects</a></li>
+              </ul>
+          </nav>
+      </div>
+      
+      <!-- Right Side: Content Sections -->
+      <div class="right-side md:col-span-2 flex flex-col">
+          <!-- Content Sections -->
+          <main class="content mt-8">
+              <section id="about" class="section opacity-0 hidden transition-opacity duration-500">
+                  <h2 class="text-2xl mb-2">About Me</h2>
+                  <p class="text-gray-400">This is the About section.</p>
+              </section>
+              <section id="contact" class="section opacity-0 hidden transition-opacity duration-500">
+                  <h2 class="text-2xl mb-2">Contact</h2>
+                  <p class="text-gray-400">This is the Contact section.</p>
+              </section>
+              <section id="projects" class="section opacity-0 hidden transition-opacity duration-500">
+                  <h2 class="text-2xl mb-2">Projects</h2>
+                  <p class="text-gray-400">This is the Projects section.</p>
+              </section>
+          </main>
+      </div>
   </div>
-  
-  <div class="content">
-    <div id="about" class="section">
-      <h2>About Me</h2>
-      <p>This is the About section.</p>
-    </div>
-    <div id="contact" class="section" style="display: none;">
-      <h2>Contact</h2>
-      <p>This is the Contact section.</p>
-    </div>
-    <div id="projects" class="section" style="display: none;">
-      <h2>Projects</h2>
-      <p>This is the Projects section.</p>
-    </div>
+
+  <!-- Settings Switches -->
+  <div class="fixed bottom-5 right-5 flex flex-col space-y-3 bg-gray-800 p-4 rounded-lg shadow-lg">
+      <!-- Disable Tilt Switch -->
+      <div class="flex items-center">
+          <input type="checkbox" id="disableTilt" class="mr-2">
+          <label for="disableTilt" class="text-white">Disable Tilt</label>
+      </div>
+      <!-- Light/Dark Theme Switch -->
+      <div class="flex items-center">
+          <input type="checkbox" id="themeSwitch" class="mr-2">
+          <label for="themeSwitch" class="text-white">Light Theme</label>
+      </div>
   </div>
-</div>
 
 </body>
 </html>
