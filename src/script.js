@@ -87,3 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const defaultSection = document.getElementById('about');
   defaultSection.classList.remove('hidden', 'opacity-0');
 });
+
+document.getElementById('dropdownCheckboxButton').addEventListener('click', function () {
+  const menu = document.getElementById('dropdownDefaultCheckbox');
+  menu.classList.toggle('hidden');
+})
