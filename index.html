@@ -3,33 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio site showcasing projects, contact information, and about section.">
     <title>Portfolio</title>
     <link rel="stylesheet" href="./src/output.css">
-    <script src="./src/script.js" defer></script> <!-- Ensure JS loads after HTML -->
+    <script src="./src/script.js" defer></script>
 </head>
-<body class="bg-black text-white flex items-center justify-center h-screen">
+<body data-theme="dark" class="flex items-center justify-center h-screen bg-primary text-primary-content">
 
   <!-- Tilt Card Container -->
-  <div class="tilt-card-container bg-black border-2 border-white p-6 w-3/4 h-1/2 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-3 gap-6" data-tilt-full-page-listening>
+  <div class="tilt-card-container bg-primary border-2 border-white p-6 w-3/4 h-1/2 overflow-hidden lg:overflow-auto rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-3 gap-6" data-tilt-full-page-listening>
 
       <!-- Left - Title and Menu -->
-      <div class="left-side md:col-span-1 flex flex-col items-start justify-start">
+      <div class="left-side md:col-span-1">
           <header class="mb-5">
-              <h1 class="title text-4xl">Portfolio</h1>
+              <h1 class="card-title text-4xl">Portfolio</h1>
           </header>
-          
-          <!-- Navigation Menu -->          
-          <ul class="menu flex flex-col rounded-box w-56">
-            <li><a href="#" class="nav-link text-lg hover:text-yellow-500 transition-colors duration-300" data-target="about">About</a></li>
-                  <li><a href="#" class="nav-link text-lg hover:text-yellow-500 transition-colors duration-300" data-target="contact">Contact</a></li>
-                  <li><a href="#" class="nav-link text-lg hover:text-yellow-500 transition-colors duration-300" data-target="projects">Projects</a></li>
-          </ul>
 
+          <!-- Navigation Menu -->
+          <ul class="menu bg-primary p-4 space-y-2" data-tilt-paralax>
+            <li><a href="#" class="nav-link text-lg hover:text-yellow-500 transition-colors duration-300" data-target="about" aria-label="Go to About Section">About</a></li>
+            <li><a href="#" class="nav-link text-lg hover:text-yellow-500 transition-colors duration-300" data-target="contact" aria-label="Go to Contact Section">Contact</a></li>
+            <li><a href="#" class="nav-link text-lg hover:text-yellow-500 transition-colors duration-300" data-target="projects" aria-label="Go to Projects Section">Projects</a></li>
+          </ul>
       </div>
 
-      <!--Content Sections - Right -->
-      <div class="right-side md:col-span-2 flex flex-col">
-          <!-- Content Sections (Hidden by default can be shown by click the section with same name on the menu) -->
+      <!-- Content Sections - Right -->
+      <div class="right-side md:col-span-2">
           <main class="content mt-8">
               <section id="about" class="section opacity-0 hidden transition-opacity duration-500">
                   <h2 class="text-2xl mb-2">About Me</h2>
@@ -47,19 +46,28 @@
       </div>
   </div>
 
-  <!-- Settings -->
-  <div class="fixed bottom-5 right-5 flex flex-col space-y-3 bg-gray-800 p-4 rounded-lg shadow-lg">
-      <!-- Disable Tilt-->
-      <div class="flex items-center">
-          <input type="checkbox" id="disableTilt" class="mr-2">
-          <label for="disableTilt" class="text-white">Disable Tilt</label>
-      </div>
-      <!-- Light/Dark Theme-->
-      <div class="flex items-center">
-          <input type="checkbox" id="themeSwitch" class="mr-2">
-          <label for="themeSwitch" class="text-white">Light Theme</label>
-      </div>
-  </div>
+    <!-- Settings -->
+    <div class="fixed top-0 right-0 mt-2 mr-2 p-4">
+        <details class="dropdown dropdown-end">
+        <summary class="btn bg-primary">Settings</summary>
+            <ul class="menu dropdown-content bg-primary rounded-box z-[1] w-52 p-4 shadow mt-2">
+                <!-- Disable Tilt -->
+                <li>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="disableTilt" class="toggle toggle-primary mr-2" aria-label="Disable Tilt Effect">
+                        <label for="disableTilt" class="text-primary-content">Disable Tilt</label>
+                    </div>
+                </li>
+                <!-- Light/Dark Theme -->
+                <li>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="themeSwitch" class="toggle toggle-primary mr-2" aria-label="Switch to Light Theme">
+                        <label for="themeSwitch" class="text-primary-content">Light Theme</label>
+                    </div>
+                </li>
+            </ul>
+        </details>
+    </div>
 
 </body>
 </html>
