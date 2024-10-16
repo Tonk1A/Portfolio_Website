@@ -1,8 +1,18 @@
+// Hide loading screen after load
+window.onload = function() {
+  const loadingScreen = document.getElementById('loading-screen');
+  loadingScreen.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+  setTimeout(() => {
+    loadingScreen.classList.add('hidden');
+  }, 500);  // Matches the duration of the transition
+};
+
+
 // VanillaTilt.js
 const loadVanillaTilt = () => {
   const script = document.createElement('script');
   script.src = 'https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js';
-  script.onload = initializeTiltWithSettings; 
+  script.onload = initializeTiltWithSettings;
   document.head.appendChild(script);
 };
 
@@ -15,7 +25,7 @@ const initializeTiltWithSettings = (options = {}) => {
     }
 
     VanillaTilt.init(element, {
-      max: options.max || 10,
+      max: options.max || 5,
       speed: options.speed || 300,
       reverse: options.reverse || false,
       reset: options.reset !== undefined ? options.reset : true,
@@ -28,43 +38,100 @@ const initializeTiltWithSettings = (options = {}) => {
   });
 };
 
-// Call Vanilla Tilt after DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  const sections = document.querySelectorAll('main .section');
-  const menuLinks = document.querySelectorAll('.nav-link');
-  const disableTiltSwitch = document.getElementById('disableTilt');
-  const themeSwitch = document.getElementById('themeSwitch');
+// Function to show the modal and display the full image
+function showModal(imageSrc) {
+  const modal = document.getElementById('certificateModal');
+  const modalImage = document.getElementById('modalImage');
+
+  modalImage.src = imageSrc; // Set the full certificate image
+  modal.classList.remove('hidden'); // Show the modal
+
+  // Apply tilt effect to modal if tilt is not disabled
+  if (!document.getElementById('disableTilt').checked) {
+    initializeTiltForModal();
+  }
+}
+
+// Function to hide the modal when clicking outside of it
+document.getElementById('certificateModal').addEventListener('click', hideModal);
+
+function hideModal() {
+  const modal = document.getElementById('certificateModal');
+  modal.classList.add('hidden'); // Hide the modal
+
+  // Destroy tilt effect on the modal when hiding
+  destroyModalTilt();
+}
+
+// Initialize tilt effect for the modal
+function initializeTiltForModal() {
+  const modalContent = document.querySelector('.modal-content');
+  VanillaTilt.init(modalContent, {
+    max: 10,
+    speed: 300,
+    reverse: false,
+    reset: true,
+    gyroscope: true,
+    scale: 1.05,
+  });
+}
+
+// Destroy tilt effect on the modal
+function destroyModalTilt() {
+  const modalContent = document.querySelector('.modal-content');
+  if (modalContent.vanillaTilt) {
+    modalContent.vanillaTilt.destroy();
+  }
+}
+
+// Theme switch logic
+const switchTheme = (isLight) => {
   const body = document.body;
   const tiltCard = document.querySelector('.tilt-card-container');
-  const tiltElements = document.querySelectorAll(".tilt-card-container");
+  const settingsMenu = document.querySelector('.dropdown-content');
 
-    // Theme switching logic
-  const switchTheme = (isLight) => {
-    const toggleClasses = (element, remove, add) => {
-      element.classList.remove(...remove);
-      element.classList.add(...add);
-    };
+  // Toggle Tailwind classes for light/dark theme
+  body.classList.toggle('bg-primary', !isLight);
+  body.classList.toggle('bg-white', isLight);
+  body.classList.toggle('text-primary-content', !isLight);
+  body.classList.toggle('text-black', isLight);
 
-    // Toggle body background and text colors
-    toggleClasses(body, isLight ? ['bg-black', 'text-white'] : ['bg-white', 'text-black'], 
-                      isLight ? ['bg-white', 'text-black'] : ['bg-black', 'text-white']);
+  // Set tilt card background and border
+  tiltCard.classList.toggle('bg-primary', !isLight);
+  tiltCard.classList.toggle('bg-white', isLight);
+  tiltCard.classList.toggle('border-white', !isLight);
+  tiltCard.classList.toggle('border-black', isLight);
 
-    // Toggle tilt card background and border
-    toggleClasses(tiltCard, isLight ? ['bg-black', 'border-white'] : ['bg-gray-200', 'border-black'], 
-                          isLight ? ['bg-gray-200', 'border-black'] : ['bg-black', 'border-white']);
+  // Set settings menu background and text colors
+  settingsMenu.classList.toggle('bg-primary', !isLight);
+  settingsMenu.classList.toggle('bg-white', isLight);
+  settingsMenu.classList.toggle('text-primary-content', !isLight);
+  settingsMenu.classList.toggle('text-black', isLight);
 
-    // Toggle settings menu text color
-    const settingsTextElements = document.querySelectorAll('.dropdown-content, label');
-    settingsTextElements.forEach((element) => {
-      toggleClasses(element, isLight ? ['text-white'] : ['text-black'], 
-                            isLight ? ['text-black'] : ['text-white']);
-    });
+  // Change the background image based on the theme
+  const backgroundImage = isLight ? "url('./src/assets/images/day.webp')" : "url('./src/assets/images/night.webp')";
+  body.style.backgroundImage = backgroundImage;
 
-    // Update label to reflect current theme
-    themeSwitch.nextElementSibling.textContent = isLight ? 'Dark Theme' : 'Light Theme';
-  };
+  // Update label for the theme switch
+  const themeSwitchLabel = document.querySelector('label[for="themeSwitch"]');
+  themeSwitchLabel.textContent = isLight ? 'Dark Theme' : 'Light Theme';
+};
 
-  // Handle menu clicks
+// Initialize background based on the current theme
+const initializeBackground = () => {
+  const isLightTheme = document.documentElement.getAttribute('data-theme') === 'light';
+  const body = document.body;
+
+  // Apply the background on page load based on the theme
+  const backgroundImage = isLightTheme ? "url('./src/assets/images/day.webp')" : "url('./src/assets/images/night.webp')";
+  body.style.backgroundImage = backgroundImage;
+};
+
+// Handle section visibility
+const handleSectionVisibility = () => {
+  const sections = document.querySelectorAll('main .section');
+  const menuLinks = document.querySelectorAll('.nav-link');
+
   menuLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
@@ -73,14 +140,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
       sections.forEach(section => {
         section.classList.add('opacity-0');
-        setTimeout(() => section.classList.add('hidden'), 500);
+        section.classList.add('hidden');
       });
 
+      targetSection.classList.remove('hidden');
       setTimeout(() => {
-        targetSection.classList.remove('hidden');
-        setTimeout(() => targetSection.classList.remove('opacity-0'), 50);
-      }, 500);
+        targetSection.classList.remove('opacity-0');
+      }, 50);
     });
+  });
+};
+
+// Handle theme switch event
+document.addEventListener('DOMContentLoaded', () => {
+  const themeSwitch = document.getElementById('themeSwitch');
+  const disableTiltSwitch = document.getElementById('disableTilt');
+  const tiltElements = document.querySelectorAll(".tilt-card-container");
+
+  // Initialize Vanilla Tilt
+  loadVanillaTilt();
+
+  // Initialize background on page load
+  initializeBackground();
+
+  // Switch theme on toggle
+  themeSwitch.addEventListener('change', (e) => {
+    switchTheme(e.target.checked);
   });
 
   // Disable Tilt
@@ -96,15 +181,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-    // Theme switch light/dark
-  themeSwitch.addEventListener('change', (e) => {
-  switchTheme(e.target.checked);
-  });
+  // Handle section visibility
+  handleSectionVisibility();
 
   // Show About section by default
   const defaultSection = document.getElementById('about');
   defaultSection.classList.remove('hidden', 'opacity-0');
+});
 
-  // Initialize Vanilla Tilt on load
-  loadVanillaTilt();
+// Handle disabling tilt globally
+document.getElementById('disableTilt').addEventListener('change', (e) => {
+  const modal = document.querySelector('.modal-content');
+  if (e.target.checked) {
+    // Disable tilt on modal
+    destroyModalTilt();
+  } else {
+    // Re-enable tilt on modal
+    initializeTiltForModal();
+  }
 });

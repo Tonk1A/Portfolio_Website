@@ -8,65 +8,357 @@
     <link rel="stylesheet" href="./src/output.css">
     <script src="./src/script.js" defer></script>
 </head>
-<body data-theme="dark" class="flex items-center justify-center h-screen bg-primary text-primary-content">
+<body class="bg-cover flex items-center justify-center min-h-screen bg-primary text-primary-content transition-all duration-200 ease-linear">
 
-  <!-- Tilt Card Container -->
-  <div class="tilt-card-container bg-primary border-2 border-white p-6 w-3/4 h-1/2 overflow-hidden lg:overflow-auto rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-3 gap-6" data-tilt-full-page-listening>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 bg-primary flex items-center justify-center z-50">
+        <div class="flex items-center space-x-2">
+        <h2 class="text-white text-xl font-semibold">Loading</h2>
+        <span class="loading loading-dots loading-s translate-y-1.5"></span>
+        </div>
+    </div>
 
-      <!-- Left - Title and Menu -->
-      <div class="left-side md:col-span-1">
-          <header class="mb-5">
-              <h1 class="card-title text-4xl">Portfolio</h1>
-          </header>
+    <!-- Tilt Card Container -->
+    <div class="tilt-card-container bg-primary border-2 border-white p-6 w-3/4 md:w-3/4 h-1/2 md:h-1/2 overflow-hidden lg:overflow-auto rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-3 gap-6 scroll-smooth" data-tilt-full-page-listening>
+        <!-- Left - Title and Menu -->
+        <div class="left-side md:col-span-1">
+            <header class="mb-5">
+                <h1 class="card-title text-3xl md:text-4xl">Portfolio</h1>
+            </header>
+            <ul class="menu p-4 space-y-2">
+                <li><a href="#" class="nav-link text-lg hover:text-yellow-500 transition-colors duration-300" data-target="about" aria-label="Go to About Section">About</a></li>
+                <li><a href="#" class="nav-link text-lg hover:text-yellow-500 transition-colors duration-300" data-target="certificates" aria-label="Go to Certificates Section">Certificates</a></li>
+                <li><a href="#" class="nav-link text-lg hover:text-yellow-500 transition-colors duration-300" data-target="contact" aria-label="Go to Contact Section">Contact</a></li>
+            </ul>
+        </div>
 
-          <!-- Navigation Menu -->
-          <ul class="menu bg-primary p-4 space-y-2" data-tilt-paralax>
-            <li><a href="#" class="nav-link text-lg hover:text-yellow-500 transition-colors duration-300" data-target="about" aria-label="Go to About Section">About</a></li>
-            <li><a href="#" class="nav-link text-lg hover:text-yellow-500 transition-colors duration-300" data-target="contact" aria-label="Go to Contact Section">Contact</a></li>
-            <li><a href="#" class="nav-link text-lg hover:text-yellow-500 transition-colors duration-300" data-target="projects" aria-label="Go to Projects Section">Projects</a></li>
-          </ul>
-      </div>
+        <!-- Right - Content Sections -->
+        <div class="right-side md:col-span-2">
+            <main class="content mt-8">
 
-      <!-- Content Sections - Right -->
-      <div class="right-side md:col-span-2">
-          <main class="content mt-8">
-              <section id="about" class="section opacity-0 hidden transition-opacity duration-500">
-                  <h2 class="text-2xl mb-2">About Me</h2>
-                  <p class="text-gray-400">This is the About section.</p>
-              </section>
-              <section id="contact" class="section opacity-0 hidden transition-opacity duration-500">
-                  <h2 class="text-2xl mb-2">Contact</h2>
-                  <p class="text-gray-400">This is the Contact section.</p>
-              </section>
-              <section id="projects" class="section opacity-0 hidden transition-opacity duration-500">
-                  <h2 class="text-2xl mb-2">Projects</h2>
-                  <p class="text-gray-400">This is the Projects section.</p>
-              </section>
-          </main>
-      </div>
-  </div>
+                <!-- About Section -->
+                <section id="about" class="section opacity-0 hidden transition-opacity duration-500 p-4">
+                    <!-- Profile Picture and Name -->
+                    <div class="flex flex-col items-center text-center md:flex-row md:text-left">
+                        <!-- Profile Picture -->
+                        <div class="avatar mb-4 md:mb-0 md:mr-6">
+                            <div class="w-24 h-24 md:w-32 md:h-32 rounded-full shadow-lg">
+                                <img src="./src/assets/images/Profile.webp" alt="Profile Picture">
+
+                            </div>
+                        </div>
+
+                        <!-- Name and Bio -->
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-semibold mb-2">Panthawat Monthong</h2>
+                            <p class="text-base md:text-lg text-gray-400 max-w-lg">
+                                Nice to meet you! Nickname's Tonkla, I am a high-school student who is interested in programming and technology.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Stats or Fun Facts Section (Mobile-Optimized) -->
+                    <div class="mt-6 flex flex-col md:flex-row justify-center md:space-x-8">
+                        <!-- Example Stat 1 -->
+                        <div class="text-center md:text-left">
+                            <h3 class="text-xl font-bold">Location</h3>
+                            <p class="text-gray-400">Bangkok, Thailand</p>
+                        </div>
+
+                        <!-- Example Stat 2 -->
+                        <div class="text-center md:text-left mt-4 md:mt-0">
+                            <h3 class="text-xl font-bold">Hobbies</h3>
+                            <p class="text-gray-400">Gaming, Reading, Cooking, Music</p>
+                        </div>
+
+                        <!-- Example Stat 3 -->
+                        <div class="text-center md:text-left mt-4 md:mt-0">
+                            <h3 class="text-xl font-bold">Favorite Food</h3>
+                            <p class="text-gray-400">Japanese Curry</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Section -->
+                <section id="contact" class="section hidden opacity-0 transition-opacity duration-500 p-4">
+                    <h2 class="text-3xl font-semibold mb-6 text-center">Contact</h2>
+
+                    <!-- Contact Details -->
+                    <div class="flex flex-col items-center space-y-6">
+
+                    <!-- Instagram -->
+                    <div class="flex items-center space-x-4">
+                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" class="h-6 w-6">
+                            <path fill="currentColor" d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/>
+                        </svg>
+                        <a href="https://www.instagram.com/4tl3d/" target="_blank" class="text-lg text-gray-400 hover:text-yellow-500 transition-colors duration-300">@4tl3d</a>
+                      </div>
+
+                    <!-- Facebook -->
+                    <div class="flex items-center space-x-4">
+                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" class="h-6 w-6">
+                            <path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/>
+                        </svg>
+                        <a href="https://www.facebook.com/4tled" target="_blank" class="text-lg text-gray-400 hover:text-yellow-500 transition-colors duration-300">Panthawat Monthong</a>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="flex items-center space-x-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path fill="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                        </svg>
+                        <a href="tel:+66858296815" class="text-lg text-gray-400 hover:text-yellow-500 transition-colors duration-300">085-829-6815</a>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="flex items-center space-x-4">
+                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" class="h-6 w-6">
+                            <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+                        </svg>
+                        <a href="mailto:tonklamonthong6@gmail.com" class="text-lg text-gray-400 hover:text-yellow-500 transition-colors duration-300">tonklamonthong6@gmail.com</a>
+                    </div>
+
+                    </div>
+                </section>
+
+
+                <!-- Certificates Section -->
+                <section id="certificates" class="section hidden opacity-0 transition-opacity duration-500 p-4">
+                    <h2 class="text-3xl font-semibold mb-6 text-center">Certificates</h2>
+                    <!-- Grid Layout -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 overflow-y-auto max-h-96 p-4 will-change-transform">
+
+                        <!-- Certificate 1 -->
+                        <div class="card w-full shadow-lg">
+                            <figure>
+                            <img src="./src/assets/certificates/AIAT_Cer_AI_Beginner_SPU_Hackathon_Special_Track_2_240824_105226.webp" alt="Certificate 1"
+                                class="w-full object-cover h-64 cursor-pointer" onclick="showModal('./src/assets/certificates/AIAT_Cer_AI_Beginner_SPU_Hackathon_Special_Track_2_240824_105226.webp')">
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title">AIAT AI Beginner</h3>
+                                <p class="text-sm text-gray-500">July 2024</p>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 2 -->
+                        <div class="card w-full shadow-lg">
+                            <figure>
+                            <img src="./src/assets/certificates/1663059160713.webp" alt="Certificate 2"
+                                class="w-full object-cover h-64 cursor-pointer" onclick="showModal('./src/assets/certificates/1663059160713.webp')">
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title">Participation in Software Engineering camp</h3>
+                                <p class="text-sm text-gray-500">August 2022</p>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 3 -->
+                        <div class="card w-full shadow-lg">
+                            <figure>
+                            <img src="./src/assets/certificates/Cer_web_1_240912_154947_298.webp" alt="Certificate 3"
+                                class="w-full object-cover h-64 cursor-pointer" onclick="showModal('./src/assets/certificates/Cer_web_1_240912_154947_298.webp')">
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title">GTC: Web Design Skills for University Applicants Training</h3>
+                                <p class="text-sm text-gray-500">August 2023</p>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 4 -->
+                        <div class="card w-full shadow-lg">
+                            <figure>
+                            <img src="./src/assets/certificates/certificate_240912_152331.webp" alt="Certificate 4"
+                                class="w-full object-cover h-64 cursor-pointer" onclick="showModal('./src/assets/certificates/certificate_240912_152331.webp')">
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title">IT KMITL Open House Smart Robot Workshop</h3>
+                                <p class="text-sm text-gray-500">December 2023</p>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 5 -->
+                        <div class="card w-full shadow-lg">
+                            <figure>
+                            <img src="./src/assets/certificates/certificatepdf_240912_152758.webp" alt="Certificate 5"
+                                class="w-full object-cover h-64 cursor-pointer" onclick="showModal('./src/assets/certificates/certificatepdf_240912_152758.webp')">
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title">IT KMITL Open House Data Science 101 Workshop</h3>
+                                <p class="text-sm text-gray-500">December 2023</p>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 6 -->
+                        <div class="card w-full shadow-lg">
+                            <figure>
+                            <img src="./src/assets/certificates/ISC2_Dom1.webp" alt="Certificate 6"
+                                class="w-full object-cover h-64 cursor-pointer" onclick="showModal('./src/assets/certificates/ISC2_Dom1.webp')">
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title">ISC2: CC Domain 1 completion</h3>
+                                <p class="text-sm text-gray-500">October 2024</p>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 7 -->
+                        <div class="card w-full shadow-lg">
+                            <figure>
+                            <img src="./src/assets/certificates/ISC2_Dom2.webp" alt="Certificate 7"
+                                class="w-full object-cover h-64 cursor-pointer" onclick="showModal('./src/assets/certificates/ISC2_Dom2.webp')">
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title">ISC2: CC Domain 2 completion</h3>
+                                <p class="text-sm text-gray-500">October 2024</p>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 8 -->
+                        <div class="card w-full shadow-lg">
+                            <figure>
+                            <img src="./src/assets/certificates/PANTHAWAT-Introduction to Python Programming.webp" alt="Certificate 8"
+                                class="w-full object-cover h-64 cursor-pointer" onclick="showModal('./src/assets/certificates/PANTHAWAT-Introduction to Python Programming.webp')">
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title">Login Meta Comp Learning introduction to Python Programming</h3>
+                                <p class="text-sm text-gray-500">October 2024</p>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 9 -->
+                        <div class="card w-full shadow-lg">
+                            <figure>
+                            <img src="./src/assets/certificates/PANTHAWAT-Introduction to React Native.webp" alt="Certificate 9"
+                                class="w-full object-cover h-64 cursor-pointer" onclick="showModal('./src/assets/certificates/PANTHAWAT-Introduction to React Native.webp')">
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title">Login Meta Comp Learning introduction to React Native</h3>
+                                <p class="text-sm text-gray-500">October 2024</p>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 10 -->
+                        <div class="card w-full shadow-lg">
+                            <figure>
+                            <img src="./src/assets/certificates/Sun_Feb_18_2024_162505_GMT0700__240912_151812.webp" alt="Certificate 10"
+                                class="w-full object-cover h-64 cursor-pointer" onclick="showModal('./src/assets/certificates/Sun_Feb_18_2024_162505_GMT0700__240912_151812.webp')">
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title">SPU AI Prompt Mini Hackathon 2024</h3>
+                                <p class="text-sm text-gray-500">January 2024</p>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 11 -->
+                        <div class="card w-full shadow-lg">
+                            <figure>
+                            <img src="./src/assets/certificates/Thu_Jul_18_2024_182306_GMT0700__240824_105414.webp" alt="Certificate 11"
+                                class="w-full object-cover h-64 cursor-pointer" onclick="showModal('./src/assets/certificates/Thu_Jul_18_2024_182306_GMT0700__240824_105414.webp')">
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title">SPU AI Prompt Mini Hackathon 2024 (Special Track)</h3>
+                                <p class="text-sm text-gray-500">July 2024</p>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 12 -->
+                        <div class="card w-full shadow-lg">
+                            <figure>
+                            <img src="./src/assets/certificates/WEBSITE_240912_153913_44.webp" alt="Certificate 12"
+                                class="w-full object-cover h-64 cursor-pointer" onclick="showModal('./src/assets/certificates/WEBSITE_240912_153913_44.webp')">
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title">GTC: Web Design Skills for University Applicants </h3>
+                                <p class="text-sm text-gray-500">August 2023</p>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 13 -->
+                        <div class="card w-full shadow-lg">
+                            <figure>
+                            <img src="./src/assets/certificates/dek-d-2025.webp" alt="Certificate 13"
+                                class="w-full object-cover h-64 cursor-pointer" onclick="showModal('./src/assets/certificates/dek-d-2025.webp')">
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title">Dek-D's TCAS Fair KMITL Open House 2024</h3>
+                                <p class="text-sm text-gray-500">October 2024</p>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 14 -->
+                        <div class="card w-full shadow-lg">
+                            <figure>
+                            <img src="./src/assets/certificates/certificate-พันธวัช-หมอนทอง.webp" alt="Certificate 14"
+                                class="w-full object-cover h-64 cursor-pointer" onclick="showModal('./src/assets/certificates/certificate-พันธวัช-หมอนทอง.webp')">
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title">ToBeIT'68 (Online)</h3>
+                                <p class="text-sm text-gray-500">October 2024</p>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 15 -->
+                        <div class="card w-full shadow-lg">
+                            <figure>
+                            <img src="./src/assets/certificates/Coursera EH3U73N9XUQ2.webp" alt="Certificate 15"
+                                class="w-full object-cover h-64 cursor-pointer" onclick="showModal('./src/assets/certificates/Coursera EH3U73N9XUQ2.webp')">
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title">Google Technical Support Fundamentals</h3>
+                                <p class="text-sm text-gray-500">October 2023</p>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 16 -->
+                        <div class="card w-full shadow-lg">
+                            <figure>
+                            <img src="./src/assets/certificates/4f754b25-c8ba-4c0d-be9e-201ddd356328.webp" alt="Certificate 16"
+                                class="w-full object-cover h-64 cursor-pointer" onclick="showModal('./src/assets/certificates/4f754b25-c8ba-4c0d-be9e-201ddd356328.webp')">
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title">Chula Intania Innovation Contest 2024</h3>
+                                <p class="text-sm text-gray-500">March 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+     <!-- Certificate Modal -->
+     <div id="certificateModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-75 flex items-center justify-center">
+        <button class="btn btn-xl btn-circle absolute bottom-20 right-100 z-10" onclick="hideModal()">✕</button>
+            <div class="modal-content bg-transparent p-4 rounded-lg max-w-4xl max-x-2xl w-full h-full lg:h-auto lg:w-3/4 relative tilt-card-container" onclick="event.stopPropagation()">
+                <img id="modalImage" src="" alt="Full Certificate" class="w-full h-full object-contain">
+            </div>
+    </div>
 
     <!-- Settings -->
     <div class="fixed top-0 right-0 mt-2 mr-2 p-4">
         <details class="dropdown dropdown-end">
-        <summary class="btn bg-primary">Settings</summary>
-            <ul class="menu dropdown-content bg-primary rounded-box z-[1] w-52 p-4 shadow mt-2">
+            <summary class="btn bg-primary">Settings</summary>
+            <ul class="menu dropdown-content bg-primary text-primary-content rounded-box z-[1] w-52 p-4 shadow mt-2">
                 <!-- Disable Tilt -->
                 <li>
                     <div class="flex items-center">
-                        <input type="checkbox" id="disableTilt" class="toggle toggle-primary mr-2" aria-label="Disable Tilt Effect">
-                        <label for="disableTilt" class="text-primary-content">Disable Tilt</label>
+                        <input type="checkbox" id="disableTilt" class="toggle toggle-primary-content mr-2" aria-label="Disable Tilt Effect">
+                        <label for="disableTilt">Disable Tilt</label>
                     </div>
                 </li>
                 <!-- Light/Dark Theme -->
                 <li>
                     <div class="flex items-center">
-                        <input type="checkbox" id="themeSwitch" class="toggle toggle-primary mr-2" aria-label="Switch to Light Theme">
-                        <label for="themeSwitch" class="text-primary-content">Light Theme</label>
+                        <input type="checkbox" id="themeSwitch" class="toggle toggle-primary-content mr-2" aria-label="Switch to Light Theme">
+                        <label for="themeSwitch">Light Theme</label>
                     </div>
                 </li>
             </ul>
         </details>
+    </div>
+
+    <!-- Message -->
+    <div class="fixed bottom-0 bg-base-100 w-full text-center text-primary-content p-2 text-sm z-50">
+        For the best experience, please view this website on a computer.
     </div>
 
 </body>

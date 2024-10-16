@@ -15,7 +15,6 @@ module.exports = {
           "neutral": "#3d4451",
           "base-100": "#ffffff",
           "text-base": "#000000",
-          "background-image": "url('./src/assets/day.webp')",
         },
         dark: {
           "primary": "#000000",
@@ -24,7 +23,6 @@ module.exports = {
           "neutral": "#191d24",
           "base-100": "#000000",
           "text-base": "#ffffff",
-          "background-image": "url('./src/assets/night.webp')",
         }
       }
     ],
